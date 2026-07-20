@@ -38,9 +38,20 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
+      - name: Verify deployment token secret
+        env:
+          TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::GitHub secret AZURE_STATIC_WEB_APPS_API_TOKEN is missing or empty."
+            echo "Create it under Settings → Secrets and variables → Actions."
+            echo "Value = Azure Portal → Static Web App → Manage deployment token → Copy."
+            exit 1
+          fi
+          echo "Secret is present (length=${#TOKEN}). Continuing deploy…"
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
