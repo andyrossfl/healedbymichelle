@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Atelier Michelle Brand-Cohesive Typography CSS
+   Loads AFTER the theme stylesheets so these rules take precedence.
+   Font pairing: Cormorant Garamond (display) + Josefin Sans (body)
+   ========================================================================== */
+
+/* 1. Brand Color Variables
+   Full palette derived from the logo artwork. The same hex values are
+   used throughout css/pink-theme.css and the booking-page styles. */
+:root {
+  --am-color-taupe: #9E8B75;         /* Primary accent - logo text color */
+  --am-color-taupe-dark: #7C6B57;    /* Hover states, strong accents (was "cherry") */
+  --am-color-taupe-deep: #8A765E;    /* Secondary strong accent (was "pink") */
+  --am-color-taupe-light: #AB9A84;   /* Muted accent text (was rosy brown) */
+  --am-color-sand: #D9CDBC;          /* Soft accent backgrounds (was "lipstick") */
+  --am-color-cream: #F5EFE6;         /* Light surfaces (was "cream") */
+  --am-color-bg-light: #D6C3B0;      /* Brand background - rgb(214, 195, 176) */
+  --am-color-ink: #5F5040;           /* Body text - dark coffee, 4.9:1 on the sand bg */
+  --am-color-ink-strong: #4A3F31;    /* Headings and strong text, 6.5:1 on the sand bg */
+  --am-color-white: #FFFFFF;
+}
+
+/* 2. Base Page and Body Text Styles (Matches Slogan Feel) */
+body {
+  font-family: 'Josefin Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: var(--am-color-ink);
+  line-height: 1.6;
+  background-color: var(--am-color-bg-light);
+}
+
+/* 3. Heading Styles (Matches 'Atelier' Feel) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--am-color-ink-strong);
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+/* Standard heading sizes (theme's classed headings, e.g. h2.h2-md,
+   keep their own sizes due to higher specificity) */
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.75rem; }
+
+/* Theme selectors that hardcode the old 'Lustria' display font */
+.sbox-9-price span,
+.sbox-11-price span,
+.masonry-filter button {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* 4. Special Branding and Secondary Text Classes */
+
+/* "Slogan" class for secondary text (e.g. under the logo) to match the card */
+.slogan-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  margin-top: 1em;
+  display: block;
+  text-align: center;
+}
+
+/* In the footer the logo is left-aligned, so align the slogan with it */
+.footer-info .slogan-text {
+  text-align: left;
+  margin-top: 0.75em;
+}
+
+/* Main paragraphs (theme's classed paragraphs, e.g. p.p-md, keep their sizes) */
+p {
+  font-size: 1.1rem;
+}
+
+/* Link styles */
+a {
+  color: var(--am-color-taupe-dark);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+a:hover {
+  color: var(--am-color-ink-strong);
+  text-decoration: underline;
+}
+
+/* 5. Logo Presentation
+   The logo artwork has a transparent background,
+   so it sits directly on whatever surface it's placed on. */
+img.am-logo {
+  border-radius: 0;
+}

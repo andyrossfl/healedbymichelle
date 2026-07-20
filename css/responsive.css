@@ -488,7 +488,7 @@
   .headtoppart { display: none; }
 
   .wsmobileheader { height: 80px; box-shadow: 0 0 2px rgba(50, 50, 50, 0.4); } 
-  .tra-menu .wsmobileheader, .white-menu .wsmobileheader { background-color: #fff; }
+  .tra-menu .wsmobileheader, .white-menu .wsmobileheader { background-color: #d6c3b0; }
   .dark-menu .wsmobileheader { background-color: #222438; }
 
   .wsanimated-arrow { padding: 14px 28px 14px 0px; margin: 24px 28px 0 0; }
@@ -891,7 +891,7 @@
   .headtoppart { display: none; }
 
   .wsmobileheader { height: 80px; box-shadow: 0 0 2px rgba(50, 50, 50, 0.4); } 
-  .tra-menu .wsmobileheader, .white-menu .wsmobileheader { background-color: #fff; }
+  .tra-menu .wsmobileheader, .white-menu .wsmobileheader { background-color: #d6c3b0; }
   .dark-menu .wsmobileheader { background-color: #222438; }
 
   .wsanimated-arrow { padding: 14px 28px 14px 0px; margin: 24px 18px 0 0; }

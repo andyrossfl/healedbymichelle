@@ -410,7 +410,12 @@
 		/*	DateTimePicker
 		/*----------------------------------------------------*/
 
-	    $('#datetimepicker').datetimepicker();
+	    $('#datetimepicker').datetimepicker({
+	    	format: 'l, F j - g:i A',
+	    	formatTime: 'g:i A',
+	    	step: 30,
+	    	minDate: 0
+	    });
 
 
 	    /*----------------------------------------------------*/

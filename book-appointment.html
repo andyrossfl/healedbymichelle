@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<!-- Spa Magic - Spa & Beauty Salon Landing Page Template design design by Jthemes (http://www.jthemes.net) -->
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+
+
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="author" content="Jthemes"/>	
+		<meta name="description" content="Healed By Michelle - Book an Appointment"/>
+		<meta name="keywords" content="Jthemes, Beauty, Cosmetic, Girly, Health, Healthy Care, Massage, Make Up, Salon, Spa, Skincare, Wellness">	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+				
+		<!-- SITE TITLE -->
+		<title>Book Appointment | Atelier Michelle</title>
+									
+		<!-- FAVICON AND TOUCH ICONS -->
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="images/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+		<link rel="icon" href="images/apple-touch-icon.png" type="image/x-icon">
+
+		<!-- GOOGLE FONTS -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+
+		<!-- BOOTSTRAP CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+				
+		<!-- FONT ICONS -->
+		<link href="https://use.fontawesome.com/releases/v5.11.0/css/all.css" rel="stylesheet" crossorigin="anonymous">		
+		<link href="css/flaticon.css" rel="stylesheet">
+
+		<!-- PLUGINS STYLESHEET (booking page only needs the menu) -->
+		<link href="css/menu.css" rel="stylesheet">	
+		<link id="effect" href="css/dropdown-effects/fade-down.css" media="all" rel="stylesheet">
+	
+		<!-- TEMPLATE CSS -->
+		<link href="css/pink-theme.css" rel="stylesheet">
+
+		<!-- RESPONSIVE CSS -->
+		<link href="css/responsive.css" rel="stylesheet">
+
+		<!-- ATELIER MICHELLE BRAND TYPOGRAPHY -->
+		<link href="css/atelier-brand.css" rel="stylesheet">
+
+		<!-- Hide the preloader as soon as the DOM is ready (do not wait for PayPal) -->
+		<style>
+			#loader-wrapper.am-hide {
+				opacity: 0 !important;
+				visibility: hidden !important;
+				pointer-events: none !important;
+				transition: opacity .25s ease, visibility .25s ease;
+			}
+		</style>
+		<script>
+			(function () {
+				function hideLoader() {
+					var el = document.getElementById("loader-wrapper");
+					if (!el || el.classList.contains("am-hide")) return;
+					el.classList.add("am-hide");
+					setTimeout(function () { el.style.display = "none"; }, 300);
+				}
+				if (document.readyState === "loading") {
+					document.addEventListener("DOMContentLoaded", hideLoader);
+				} else {
+					hideLoader();
+				}
+				/* Hard fallback so a stalled third-party script never traps visitors */
+				setTimeout(hideLoader, 800);
+			})();
+		</script>
+
+		<!-- BOOKING PAGE STYLES -->
+		<style>
+			.booking-card {
+				background: #f8f1e7;
+				border-radius: 10px;
+				box-shadow: 0 10px 35px rgba(0, 0, 0, .08);
+				padding: 45px 40px;
+			}
+			.booking-card .form-label {
+				display: block;
+				font-weight: 500;
+				margin-bottom: 8px;
+				letter-spacing: .3px;
+			}
+			.booking-card .form-control,
+			.booking-card select.form-control {
+				height: 54px;
+				background: #fdfaf4;
+				border: 1px solid #d8c7af;
+				border-radius: 6px;
+				font-size: 1rem;
+				padding: 0 16px;
+				margin-bottom: 24px;
+				width: 100%;
+			}
+			.booking-card .form-control:focus {
+				background: #fffdf8;
+				border-color: #9e8b75;
+				outline: none;
+				box-shadow: 0 0 0 3px rgba(158, 139, 117, .18);
+			}
+			/* Session length pills */
+			.length-options {
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+				margin-bottom: 24px;
+			}
+			.length-options input[type="radio"] {
+				position: absolute;
+				opacity: 0;
+				pointer-events: none;
+			}
+			.length-options label {
+				flex: 1 1 0;
+				min-width: 110px;
+				text-align: center;
+				padding: 14px 10px;
+				border: 2px solid #d8c7af;
+				border-radius: 6px;
+				background: #fdfaf4;
+				cursor: pointer;
+				font-weight: 500;
+				margin: 0;
+				transition: all .2s ease;
+				user-select: none;
+			}
+			.length-options input[type="radio"]:checked + label {
+				border-color: #9e8b75;
+				background: #9e8b75;
+				color: #fff;
+			}
+			.length-options input[type="radio"]:focus-visible + label {
+				box-shadow: 0 0 0 3px rgba(158, 139, 117, .35);
+			}
+			/* Live price display */
+			.price-display {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				background: #fdfaf4;
+				border: 1px dashed #9e8b75;
+				border-radius: 6px;
+				padding: 18px 22px;
+				margin-bottom: 30px;
+			}
+			.price-display .price-label {
+				font-weight: 500;
+				font-size: 1.05rem;
+				margin: 0;
+			}
+			.price-display .price-value {
+				font-size: 1.65rem;
+				font-weight: 700;
+				margin: 0;
+			}
+			#paypal-button-container {
+				max-width: 420px;
+				margin: 0 auto;
+				position: relative;
+			}
+			/* Transparent overlay that intercepts clicks until the form is valid */
+			#paypal-guard {
+				position: absolute;
+				inset: 0;
+				z-index: 100;
+				cursor: pointer;
+				background: transparent;
+			}
+			/* Success UI */
+			#booking-success {
+				display: none;
+				text-align: center;
+				background: #f8f1e7;
+				border-radius: 10px;
+				box-shadow: 0 10px 35px rgba(0, 0, 0, .08);
+				padding: 60px 40px;
+			}
+			#booking-success .success-icon {
+				font-size: 4rem;
+				color: #6fbf73;
+				margin-bottom: 20px;
+			}
+			#booking-success .booking-summary {
+				max-width: 480px;
+				margin: 25px auto 35px;
+				text-align: left;
+				background: #fdfaf4;
+				border-radius: 6px;
+				padding: 22px 28px;
+			}
+			#booking-success .booking-summary p {
+				margin-bottom: 8px;
+			}
+			#booking-success .booking-summary p span {
+				font-weight: 600;
+			}
+			.gcal-btn i {
+				margin-right: 8px;
+			}
+			@media (max-width: 575px) {
+				.booking-card { padding: 32px 22px; }
+			}
+		</style>
+	
+	</head>
+
+
+
+
+	<body>
+
+
+
+
+		<!-- PRELOADER SPINNER
+		============================================= -->	
+		<div id="loader-wrapper">
+			<div id="loading">
+				<div class="cssload-loader">
+					<div class="fancy-spinner">
+					  	<div class="ring"></div>
+					  	<div class="ring"></div>
+					  	<div class="dot"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<!-- PAGE CONTENT
+		============================================= -->	
+		<div id="page" class="page">
+
+
+
+
+			<!-- HEADER
+			============================================= -->
+			<header id="header" class="header white-menu navbar-dark">
+				<div class="header-wrapper">
+
+
+					<!-- MOBILE HEADER -->
+				    <div class="wsmobileheader clearfix">	  	
+				    	<span class="smllogo"><img class="am-logo" src="images/atelier-michelle-logo.png?v=3" width="113" height="50" alt="Atelier Michelle - mobile logo"/></span>
+				    	<a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>	
+				 	</div>
+
+
+				 	<!-- NAVIGATION MENU -->
+				  	<div class="wsmainfull menu clearfix">
+	    				<div class="wsmainwp clearfix">
+
+
+	    					<!-- LOGO IMAGE -->
+	    					<!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 340 x 100 pixels) -->
+	    					<div class="desktoplogo"><a href="#booking-page" class="logo-black"><img class="am-logo" src="images/atelier-michelle-logo.png?v=3" width="113" height="50" alt="Atelier Michelle - header logo"></a></div>
+	    					<div class="desktoplogo"><a href="#booking-page" class="logo-white"><img class="am-logo" src="images/atelier-michelle-logo.png?v=3" width="113" height="50" alt="Atelier Michelle - header logo"></a></div>
+
+
+	    					<!-- MAIN MENU -->
+	      					<nav class="wsmenu clearfix">
+	        					<ul class="wsmenu-list">
+
+
+	        						<!-- SIMPLE NAVIGATION LINK -->
+							    	<li class="nl-simple" aria-haspopup="true"><a href="index.html">Home</a></li>
+
+
+								    <!-- DROPDOWN MENU 
+						        	<li aria-haspopup="true"><a href="#">Pages <span class="wsarrow"></span></a>
+						        		<div class="wsmegamenu clearfix halfmenu">
+						              		<div class="container-fluid">
+						                		<div class="row">
+
+						                			
+									                <ul class="col-lg-6 link-list">	
+									                    <li class="fst-li"><a href="about.html">About Us</a></li>					             
+									                    <li><a href="services.html">Our Services</a></li>	
+									                    <li><a href="service-details.html">Service Details</a></li>
+									                    <li><a href="gallery.html">Our Gallery</a></li>
+									                    <li><a href="team.html">Our Experts</a></li>
+									                    <li><a href="gift-cards.html">Gift Cards</a></li>
+									                </ul>
+
+								            
+									                <ul class="col-lg-6 link-list">							                  
+									                    <li class="fst-li"><a href="pricing.html">Pricing Plans</a></li>	
+									                    <li><a href="book-appointment.html">Booking Form</a></li>
+									                    <li><a href="faqs.html">FAQs</a></li>					      
+									                    <li><a href="terms.html">Terms & Privacy</a></li>
+									                    <li><a href="contacts.html">Contacts</a></li>
+									                </ul>
+
+						                		</div>
+						              		</div>
+						            	</div>
+						          	</li>	--> <!-- END DROPDOWN MENU --> 
+
+
+							    	<!-- MEGAMENU 
+						          	<li aria-haspopup="true"><a href="#">Services <span class="wsarrow"></span></a>
+	            						<div class="wsmegamenu w-70 clearfix">
+	             							<div class="container">
+	               								<div class="row">
+
+	               									
+	               									<ul class="col-md-12 col-lg-4 link-list">
+									                    <li class="title txt-color-01"><p>Massages</p></li>
+									                    <li class="fst-li"><a href="#">Hot Stone Massage</a></li>
+									                    <li><a href="#">Traditional Thai Massage</a></li>
+									                    <li><a href="#">Aromatherapy Massage</a></li>
+									                    <li><a href="#">Deep Tissue Massage</a></li>		                             
+									                </ul>
+
+									              
+	               									<ul class="col-md-12 col-lg-4 link-list">
+									                    <li class="title txt-color-01"><p>Therapies</p></li>
+									                    <li class="fst-li"><a href="#">Physiotherapy</a></li>					                 
+									                    <li><a href="#">Skin & Beauty Care</a></li>
+									                    <li><a href="#">Executive Reflexology</a></li>
+									                    <li><a href="#">Aroma & Jet Hydro Therapy</a></li>			              
+									                </ul>
+
+									         
+	               									<ul class="col-md-12 col-lg-4 link-list">
+									                    <li class="title txt-color-01"><p>Treatments</p></li>
+									                    <li class="fst-li"><a href="#">Spa Ritual Body Scrub</a></li>
+									                    <li><a href="#">Deluxe Korean Scrub</a></li>					              
+									                    <li><a href="#">Soothing Skin Body Wrap</a></li>
+									                    <li><a href="#">Teatox Mud Body Treatment</a></li>
+									                </ul>
+                
+								                </div>  	
+								            </div>  
+								        </div>  
+								    </li>	--> <!-- END MEGAMENU -->
+
+
+								    <!-- SIMPLE NAVIGATION LINK 
+							    	<li class="nl-simple" aria-haspopup="true"><a href="gift-cards.html">Gift Cards</a></li>
+								-->
+
+							    	<!-- SIMPLE NAVIGATION LINK 
+							    	<li class="nl-simple" aria-haspopup="true"><a href="contacts.html">Contacts</a></li>
+								-->
+
+
+								    <!-- HEADER BUTTON -->
+								    <li class="nl-simple" aria-haspopup="true">
+								    	<a href="book-appointment.html" class="btn btn-color-02 tra-01-hover last-link">Book Now</a>
+								    </li>
+
+
+	        					</ul>
+	        				</nav>	<!-- END MAIN MENU -->
+
+	    				</div>
+	    			</div>	<!-- END NAVIGATION MENU -->
+
+
+				</div>     <!-- End header-wrapper -->
+			</header>	<!-- END HEADER -->
+
+
+
+
+			<!-- INNER PAGE WRAPPER
+			============================================= -->	
+			<div class="inner-page-wrapper">
+
+
+
+
+				<!-- PAGE HERO
+				============================================= -->	
+				<section id="booking-page" class="bg-fixed wide-100 page-hero-section division">
+					<div class="container">	
+
+
+						<!-- PAGE HERO TEXT -->
+						<div class="row">	
+							<div class="col-md-10 col-xl-8 offset-md-1 offset-xl-2">
+								<div class="hero-txt text-center white-color">
+
+									<!-- Title -->
+									<h2 class="h2-lg">Book Appointment</h2>
+
+									<!-- Text -->
+									<p class="p-lg">Choose your session, pick a time that works for you, and pay securely 
+									   online with PayPal
+									</p>
+
+								</div>
+							</div>	
+						</div>    <!-- END PAGE HERO TEXT -->
+
+
+						<!-- BREADCRUMB -->
+						<div id="breadcrumb">
+							<div class="row">						
+								<div class="col">
+									<div class="breadcrumb-nav">
+										<nav aria-label="breadcrumb">
+										  	<ol class="breadcrumb">
+										    	<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+										    	<li class="breadcrumb-item active" aria-current="page">Book Appointment</li>
+										  	</ol>
+										</nav>
+									</div>
+								</div>
+							</div> 
+						</div>	<!-- END BREADCRUMB -->
+
+
+					</div>	   <!-- End container --> 
+				</section>	<!-- END PAGE HERO -->
+
+
+
+
+				<!-- BOOKING SECTION
+				============================================= -->
+				<section id="booking-1" class="bg-color-01 wide-60 booking-section division">				
+					<div class="container">
+
+
+						<!-- SECTION TITLE -->	
+						<div class="row">	
+							<div class="col-lg-10 offset-lg-1">
+								<div class="section-title mb-60 text-center">	
+
+									<!-- Transparent Header -->	
+									<h2 class="tra-header txt-color-02">Booking</h2>	
+
+									<!-- Title 	-->	
+									<h3 class="h3-xl txt-color-01">Reserve Your Session</h3>	
+
+									<!-- Text -->	
+									<p class="p-lg txt-color-05">Fill in your details below. Your total updates automatically 
+									   based on the session you choose, and your spot is confirmed as soon as payment completes.
+									</p>
+										
+								</div>	
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-lg-8 offset-lg-2">
+
+
+								<!-- BOOKING FORM CARD -->
+								<div id="booking-card" class="booking-card">
+									<form id="appointment-form" novalidate>
+
+										<!-- Full Name -->
+										<label class="form-label txt-color-01" for="client-name">Full Name <span aria-hidden="true">*</span></label>
+										<input type="text" id="client-name" name="client-name" class="form-control"
+										       placeholder="Your full name" autocomplete="name" required>
+
+										<!-- Type of Session -->
+										<label class="form-label txt-color-01" for="session-type">Type of Session <span aria-hidden="true">*</span></label>
+										<select id="session-type" name="session-type" class="form-control" required>
+											<option value="" disabled selected>Select a session type&hellip;</option>
+											<option value="deep-tissue">Deep Tissue Massage</option>
+											<option value="relaxing">Relaxing Massage</option>
+											<option value="swedish">Swedish Massage</option>
+											<option value="foot">Foot Massage</option>
+											<option value="therapeutic">Therapeutic Massage</option>
+										</select>
+
+										<!-- Session Length -->
+										<fieldset style="border:0; padding:0; margin:0;">
+											<legend class="form-label txt-color-01" style="font-size:1rem;">Session Length <span aria-hidden="true">*</span></legend>
+											<div class="length-options" role="radiogroup" aria-label="Session length in minutes">
+												<span>
+													<input type="radio" id="len-60" name="session-length" value="60" checked required>
+													<label for="len-60">60 min</label>
+												</span>
+												<span>
+													<input type="radio" id="len-90" name="session-length" value="90">
+													<label for="len-90">90 min</label>
+												</span>
+												<span>
+													<input type="radio" id="len-120" name="session-length" value="120">
+													<label for="len-120">120 min</label>
+												</span>
+											</div>
+										</fieldset>
+
+										<!-- Date & Time -->
+										<label class="form-label txt-color-01" for="appointment-datetime">Preferred Date &amp; Time <span aria-hidden="true">*</span></label>
+										<input type="datetime-local" id="appointment-datetime" name="appointment-datetime"
+										       class="form-control" required>
+
+										<!-- Live Total Price -->
+										<div class="price-display" aria-live="polite">
+											<p class="price-label txt-color-05">Total Price:</p>
+											<p class="price-value txt-color-01" id="total-price">&mdash;</p>
+										</div>
+
+									</form>
+
+									<!-- PayPal Smart Buttons -->
+									<div id="paypal-button-container">
+										<!-- Guard overlay: intercepts clicks and triggers HTML5 validation until the form is valid -->
+										<div id="paypal-guard" title="Please complete the form first"></div>
+									</div>
+
+								</div>	<!-- END BOOKING FORM CARD -->
+
+
+								<!-- SUCCESS UI (hidden until payment completes) -->
+								<div id="booking-success" role="status">
+
+									<div class="success-icon"><i class="fas fa-check-circle"></i></div>
+
+									<h3 class="h3-sm txt-color-01">Booking Confirmed!</h3>
+									<p class="p-lg txt-color-05">Thank you &mdash; your payment was received and your session is booked.</p>
+
+									<!-- Booking summary (filled in by JS) -->
+									<div class="booking-summary txt-color-05">
+										<p><span>Name:</span> <span id="summary-name"></span></p>
+										<p><span>Session:</span> <span id="summary-session"></span></p>
+										<p><span>Date &amp; Time:</span> <span id="summary-datetime"></span></p>
+										<p><span>Amount Paid:</span> <span id="summary-amount"></span></p>
+										<p><span>Transaction ID:</span> <span id="summary-txn"></span></p>
+									</div>
+
+									<!-- Add to Google Calendar -->
+									<a id="gcal-link" href="#" target="_blank" rel="noopener"
+									   class="btn btn-md btn-color-02 tra-02-hover gcal-btn">
+										<i class="far fa-calendar-plus"></i>Add to Google Calendar
+									</a>
+
+								</div>	<!-- END SUCCESS UI -->
+
+
+							</div>
+						</div>	<!-- End row -->
+
+
+					</div>	   <!-- End container -->		
+				</section>	<!-- END BOOKING SECTION -->
+
+
+
+
+				<!-- FOOTER-4
+				============================================= -->
+				<footer id="footer-4" class="bg-color-01 footer division">
+					<div class="container">
+
+
+						<!-- FOOTER CONTENT -->
+						<div class="row">
+
+
+							<!-- FOOTER INFO -->
+							<div class="col-md-5 col-lg-4">
+								<div class="footer-info mb-40">
+
+									<!-- For Retina Ready displays take a image with double the amount of pixels that your image will be 
+									displayed (e.g 408 x 120  pixels) -->
+									<img class="am-logo" src="images/atelier-michelle-logo.png?v=3" width="136" height="60" alt="Atelier Michelle - footer logo">
+									<span class="slogan-text">Esthetician + Wellness Studio</span>
+
+								</div>	
+							</div>	
+
+
+							<!-- FOOTER CONTACTS -->
+							<div class="col-md-4 col-lg-3 col-xl-3">
+								<div class="footer-contacts mb-40">
+								
+									<!-- Title -->
+									<h6 class="h6-lg txt-color-01">Let's Talk</h6>
+
+									<!-- Address -->
+									<p class="txt-color-05">121 King Street, Melbourne,</p> 
+									<p class="txt-color-05">Victoria 3000 Australia</p>
+
+									<!-- Footer Contacts -->
+									<div class="txt-color-05 mt-15">
+
+										<!-- Email -->
+										<p class="foo-email">E: <a href="mailto:yourdomain@mail.com">hello@yourdomain.com</a></p>
+
+										<!-- Phone -->
+										<p>Phone: +12 9 8765 4321</p>
+										<p>Skype : <a href="tel:123456789">support.spamagic</a></p>
+
+									</div>
+
+								</div>
+							</div>
+
+
+							<!-- FOOTER LINKS -->
+							<div class="col-md-3 col-lg-2">
+								<div class="footer-links mb-40">
+								
+									<!-- Title -->
+									<h6 class="h6-lg txt-color-01">Quick Links</h6>
+
+									<!-- Footer Links -->
+									<ul class="txt-color-05 clearfix">
+										<li><p><a href="about.html">About Us</a></p></li>	
+										<li><p><a href="services.html">Our Services</a></p></li>	
+										<li><p><a href="faqs.html">Help & FAQs</a></p></li>
+										<li><p><a href="book-appointment.html">Appointments</a></p></li>
+										<li><p><a href="gift-cards.html">Gift Cards</a></p></li>	
+									</ul>
+
+								</div>
+							</div>
+
+
+							<!-- FOOTER IMAGES -->
+							<div class="col-md-12 col-lg-3">
+								<div class="footer-img mb-40">
+
+									<!-- Title -->
+									<h6 class="h6-lg txt-color-01">Instagram</h6>
+
+									<!-- Instagram Images -->
+									<ul class="text-center clearfix">
+										<li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-01.jpg" alt="insta-img"></a></li>
+										<li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-02.jpg" alt="insta-img"></a></li>
+										<li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-03.jpg" alt="insta-img"></a></li>
+										<li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-04.jpg" alt="insta-img"></a></li>
+										<li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-05.jpg" alt="insta-img"></a></li>
+										<li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-06.jpg" alt="insta-img"></a></li>	
+									</ul>
+															
+								</div>
+							</div>	<!-- END FOOTER IMAGES -->
+
+
+						</div>	  <!-- END FOOTER CONTENT -->
+
+
+						<!-- BOTTOM FOOTER -->
+						<div class="bottom-footer txt-color-05">
+							<div class="row d-flex align-items-center">
+
+
+								<!-- FOOTER COPYRIGHT -->
+								<div class="col-lg-6">
+									<div class="footer-copyright">
+										<p>&copy; 2026 Healed By Michelle. All Rights Reserved</p>
+									</div>
+								</div>
+
+
+								<!-- BOTTOM FOOTER LINKS -->
+								<div class="col-lg-6">
+									<ul class="bottom-footer-list text-right clearfix">
+										<li><p class="first-list-link"><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></p></li>	
+										<li><p><a href="#"><i class="fab fa-twitter"></i> Twitter</a></p></li>
+										<li><p><a href="#"><i class="fab fa-instagram"></i> Instagram</a></p></li>
+										<li><p class="last-li"><a href="#"><i class="fab fa-yelp"></i> Yelp</a></p></li>
+									</ul>
+								</div>
+
+
+							</div>  <!-- End row -->
+						</div>	<!-- END BOTTOM FOOTER -->
+
+
+					</div>	   <!-- End container -->										
+				</footer>	<!-- END FOOTER-4 -->
+
+
+
+
+			</div>	<!-- END INNER PAGE WRAPPER -->
+
+
+
+
+		</div>	<!-- END PAGE CONTENT -->
+
+
+
+
+		<!-- EXTERNAL SCRIPTS (lean set for the booking page) -->
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/menu.js"></script>
+		<script>
+			/* Sticky header scroll class — replaces the unused custom.js plugins */
+			jQuery(function ($) {
+				$(window).on("scroll", function () {
+					if ($(window).scrollTop() > 80) {
+						$(".wsmainfull").addClass("scroll");
+					} else {
+						$(".wsmainfull").removeClass("scroll");
+					}
+				});
+			});
+		</script>
+
+
+		<!-- PAYPAL SDK (async — must not block the page or the preloader)
+		=============================================
+		Replace client-id "test" with your live PayPal Client ID before going to production.
+		Get it at: https://developer.paypal.com/dashboard/applications -->
+		<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD&intent=capture" async></script>
+
+
+		<!-- EMAILJS SDK (async)
+		=============================================
+		Sends a booking notification email to the business owner after payment.
+		Setup (free tier: 200 emails/month):
+		  1. Create an account at https://www.emailjs.com/
+		  2. Add an Email Service (e.g. connect your Gmail) -> copy the Service ID
+		  3. Create an Email Template using these variables:
+		     {{client_name}} {{session}} {{length}} {{datetime}} {{amount}} {{paypal_txn}}
+		     -> copy the Template ID
+		  4. Account > General -> copy your Public Key
+		  5. Paste all three values into EMAILJS_CONFIG in the booking script below -->
+		<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" async></script>
+
+
+		<!-- BOOKING FORM LOGIC
+		============================================= -->
+		<script>
+		(function () {
+			"use strict";
+
+			function whenReady(check, callback, attempts) {
+				attempts = attempts || 0;
+				if (check()) { callback(); return; }
+				if (attempts > 120) { callback(); return; } /* ~6s max wait */
+				setTimeout(function () { whenReady(check, callback, attempts + 1); }, 50);
+			}
+
+			whenReady(function () { return !!window.paypal; }, function () {
+				initBooking();
+			});
+
+			function initBooking() {
+
+			/* ==============================================================
+			   EMAILJS CONFIG
+			   --------------------------------------------------------------
+			   Fill in your three EmailJS values (see the EmailJS SDK comment
+			   above). Until all three are set, email sending is skipped
+			   silently and the rest of the booking flow works normally.
+			   ============================================================== */
+			var EMAILJS_CONFIG = {
+				publicKey:  "YOUR_PUBLIC_KEY",
+				serviceId:  "YOUR_SERVICE_ID",
+				templateId: "YOUR_TEMPLATE_ID"
+			};
+
+			var emailjsReady = window.emailjs &&
+				EMAILJS_CONFIG.publicKey  !== "YOUR_PUBLIC_KEY" &&
+				EMAILJS_CONFIG.serviceId  !== "YOUR_SERVICE_ID" &&
+				EMAILJS_CONFIG.templateId !== "YOUR_TEMPLATE_ID";
+
+			if (emailjsReady) {
+				emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+			}
+
+			var PRICING = {
+				sessions: {
+					"deep-tissue": { label: "Deep Tissue Massage", basePrice: 95 },
+					"relaxing":    { label: "Relaxing Massage",    basePrice: 80 },
+					"swedish":     { label: "Swedish Massage",     basePrice: 85 },
+					"foot":        { label: "Foot Massage",        basePrice: 70 },
+					"therapeutic": { label: "Therapeutic Massage", basePrice: 100 }
+				},
+				lengthMultipliers: {
+					"60":  1.0,
+					"90":  1.5,
+					"120": 2.0
+				}
+			};
+
+			/* --- DOM references --- */
+			var form        = document.getElementById("appointment-form");
+			var nameInput   = document.getElementById("client-name");
+			var typeSelect  = document.getElementById("session-type");
+			var dtInput     = document.getElementById("appointment-datetime");
+			var priceEl     = document.getElementById("total-price");
+			var guard       = document.getElementById("paypal-guard");
+			var bookingCard = document.getElementById("booking-card");
+			var successUI   = document.getElementById("booking-success");
+
+			if (!form || !dtInput || !priceEl || !guard) { return; }
+
+			/* Prevent booking in the past: set the datetime-local minimum to now */
+			function pad(n) { return String(n).padStart(2, "0"); }
+			var now = new Date();
+			dtInput.min = now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate()) +
+			              "T" + pad(now.getHours()) + ":" + pad(now.getMinutes());
+
+			/* ==============================================================
+			   2. LIVE PRICE CALCULATION
+			   ============================================================== */
+			function getSelectedLength() {
+				var checked = form.querySelector('input[name="session-length"]:checked');
+				return checked ? checked.value : null;
+			}
+
+			function calculateTotal() {
+				var type   = typeSelect.value;
+				var length = getSelectedLength();
+				if (!type || !length || !PRICING.sessions[type]) { return null; }
+				var total = PRICING.sessions[type].basePrice * PRICING.lengthMultipliers[length];
+				return Math.round(total * 100) / 100;
+			}
+
+			function updatePriceDisplay() {
+				var total = calculateTotal();
+				priceEl.textContent = (total === null) ? "\u2014" : "$" + total.toFixed(2);
+			}
+
+			form.addEventListener("change", updatePriceDisplay);
+			updatePriceDisplay();
+
+			/* ==============================================================
+			   3. VALIDATION GUARD FOR PAYPAL BUTTONS
+			   ============================================================== */
+			function isFormValid() {
+				return form.checkValidity() && calculateTotal() !== null;
+			}
+
+			function syncGuard() {
+				guard.style.display = isFormValid() ? "none" : "block";
+			}
+
+			guard.addEventListener("click", function () {
+				form.reportValidity();
+				syncGuard();
+			});
+
+			form.addEventListener("input", syncGuard);
+			form.addEventListener("change", syncGuard);
+			syncGuard();
+
+			/* ==============================================================
+			   4. GOOGLE CALENDAR LINK GENERATOR
+			   ============================================================== */
+			function toGCalStamp(date) {
+				return date.getFullYear() + pad(date.getMonth() + 1) + pad(date.getDate()) +
+				       "T" + pad(date.getHours()) + pad(date.getMinutes()) + "00";
+			}
+
+			function buildGoogleCalendarUrl(datetimeLocalValue, sessionLabel, lengthMinutes, clientName) {
+				var start = new Date(datetimeLocalValue);
+				var end   = new Date(start.getTime() + lengthMinutes * 60000);
+
+				var params = new URLSearchParams({
+					action:  "TEMPLATE",
+					text:    sessionLabel + " (" + lengthMinutes + " min) - Healed By Michelle",
+					dates:   toGCalStamp(start) + "/" + toGCalStamp(end),
+					details: "Booking for " + clientName + "\n" +
+					         "Session: " + sessionLabel + "\n" +
+					         "Length: " + lengthMinutes + " minutes\n\n" +
+					         "Booked online at Healed By Michelle.",
+					location: "Healed By Michelle"
+				});
+
+				return "https://calendar.google.com/calendar/render?" + params.toString();
+			}
+
+			/* ==============================================================
+			   5. PAYPAL SMART BUTTONS
+			   ============================================================== */
+			function showPayPalFallback() {
+				guard.style.display = "none";
+				var msg = document.createElement("div");
+				msg.setAttribute("role", "alert");
+				msg.style.cssText = "background:#f5efe6;border:1px solid #cbbba2;border-radius:6px;" +
+					"padding:18px 22px;text-align:center;color:#6b5b48;line-height:1.5;";
+				msg.innerHTML = "The payment buttons could not be loaded. This is usually caused by an " +
+					"ad&#8209;blocker or privacy extension blocking PayPal.<br>" +
+					"Please disable it for this page and refresh, or contact us to book directly.";
+				document.getElementById("paypal-button-container").appendChild(msg);
+			}
+
+			if (window.paypal) {
+				paypal.Buttons({
+
+					onClick: function (data, actions) {
+						if (!isFormValid()) {
+							form.reportValidity();
+							syncGuard();
+							return actions.reject();
+						}
+						return actions.resolve();
+					},
+
+					createOrder: function (data, actions) {
+						var total   = calculateTotal();
+						var session = PRICING.sessions[typeSelect.value];
+						var length  = getSelectedLength();
+
+						return actions.order.create({
+							purchase_units: [{
+								description: session.label + " - " + length + " min (" + dtInput.value.replace("T", " ") + ")",
+								amount: {
+									currency_code: "USD",
+									value: total.toFixed(2)
+								}
+							}]
+						});
+					},
+
+					onApprove: function (data, actions) {
+						return actions.order.capture().then(function (details) {
+							var session = PRICING.sessions[typeSelect.value];
+							var length  = parseInt(getSelectedLength(), 10);
+							var total   = calculateTotal();
+							var when    = new Date(dtInput.value);
+
+							document.getElementById("summary-name").textContent     = nameInput.value;
+							document.getElementById("summary-session").textContent  = session.label + " (" + length + " min)";
+							document.getElementById("summary-datetime").textContent = when.toLocaleString([], {
+								weekday: "long", year: "numeric", month: "long", day: "numeric",
+								hour: "numeric", minute: "2-digit"
+							});
+							document.getElementById("summary-amount").textContent   = "$" + total.toFixed(2) + " USD";
+							document.getElementById("summary-txn").textContent      = details.id;
+
+							document.getElementById("gcal-link").href =
+								buildGoogleCalendarUrl(dtInput.value, session.label, length, nameInput.value);
+
+							bookingCard.style.display = "none";
+							successUI.style.display   = "block";
+							successUI.scrollIntoView({ behavior: "smooth", block: "center" });
+
+							if (emailjsReady) {
+								emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
+									client_name: nameInput.value,
+									session:     session.label,
+									length:      length + " minutes",
+									datetime:    when.toLocaleString([], {
+										weekday: "long", year: "numeric", month: "long", day: "numeric",
+										hour: "numeric", minute: "2-digit"
+									}),
+									amount:      "$" + total.toFixed(2) + " USD",
+									paypal_txn:  details.id
+								}).catch(function (err) {
+									console.error("EmailJS notification failed:", err);
+								});
+							} else {
+								console.warn("EmailJS not configured -- booking email skipped. Set EMAILJS_CONFIG values.");
+							}
+						});
+					},
+
+					onError: function (err) {
+						console.error("PayPal error:", err);
+						alert("Something went wrong with the payment. Please try again or contact us directly.");
+					}
+
+				}).render("#paypal-button-container").catch(function (err) {
+					console.error("PayPal buttons failed to render:", err);
+					showPayPalFallback();
+				});
+			} else {
+				console.error("PayPal SDK did not load -- check ad-blockers and the client-id in the SDK script tag.");
+				showPayPalFallback();
+			}
+
+			} /* end initBooking */
+		})();
+		</script>
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+		<!-- [if lt IE 9]>
+			<script src="js/html5shiv.js" type="text/javascript"></script>
+			<script src="js/respond.min.js" type="text/javascript"></script>
+		<![endif] -->
+
+
+
+
+	</body>
+
+
+
+</html>

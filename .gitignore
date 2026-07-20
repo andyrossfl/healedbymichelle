@@ -1,0 +1,4 @@
+.DS_Store
+
+# Raw source asset downloads (large originals from Drive) — not for deploy
+assets/
