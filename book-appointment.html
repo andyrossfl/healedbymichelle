@@ -84,6 +84,28 @@
 
 		<!-- BOOKING PAGE STYLES -->
 		<style>
+			/* Bootstrap tabs — branded to match the taupe palette (no new class names) */
+			.booking-section .nav-tabs {
+				border-bottom: 1px solid #d8c7af;
+			}
+			.booking-section .nav-tabs .nav-link {
+				color: #5f5040;
+				font-weight: 500;
+				letter-spacing: .5px;
+				border: 1px solid transparent;
+				border-radius: 0;
+				padding: 12px 28px;
+			}
+			.booking-section .nav-tabs .nav-link:hover {
+				border-color: transparent transparent #d8c7af;
+				color: #7c6b57;
+			}
+			.booking-section .nav-tabs .nav-link.active {
+				color: #7c6b57;
+				background-color: transparent;
+				border-color: #d8c7af #d8c7af #fbf9f5;
+			}
+
 			.booking-card {
 				background: #f8f1e7;
 				border-radius: 10px;
@@ -454,8 +476,8 @@
 									<h3 class="h3-xl txt-color-01">Reserve Your Session</h3>	
 
 									<!-- Text -->	
-									<p class="p-lg txt-color-05">Fill in your details below. Your total updates automatically 
-									   based on the session you choose, and your spot is confirmed as soon as payment completes.
+									<p class="p-lg txt-color-05">Browse our menu of treatments, then book and pay securely online. 
+									   Your total updates automatically based on the session you choose.
 									</p>
 										
 								</div>	
@@ -463,8 +485,26 @@
 						</div>
 
 
+						<!-- BOOKING TABS (Bootstrap nav-tabs — included with the template) -->
 						<div class="row">
-							<div class="col-lg-8 offset-lg-2">
+							<div class="col-lg-10 offset-lg-1">
+
+								<ul class="nav nav-tabs justify-content-center mb-50" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" id="tab-book-link" data-toggle="tab" href="#tab-book" role="tab" aria-controls="tab-book" aria-selected="true">Book Now</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="tab-services-link" data-toggle="tab" href="#tab-services" role="tab" aria-controls="tab-services" aria-selected="false">Our Services</a>
+									</li>
+								</ul>
+
+								<div class="tab-content">
+
+
+									<!-- TAB: BOOK NOW -->
+									<div class="tab-pane fade show active" id="tab-book" role="tabpanel" aria-labelledby="tab-book-link">
+										<div class="row">
+											<div class="col-lg-10 offset-lg-1">
 
 
 								<!-- BOOKING FORM CARD -->
@@ -554,8 +594,200 @@
 								</div>	<!-- END SUCCESS UI -->
 
 
+											</div>
+										</div>
+									</div>	<!-- END TAB: BOOK NOW -->
+
+
+									<!-- TAB: OUR SERVICES -->
+									<div class="tab-pane fade" id="tab-services" role="tabpanel" aria-labelledby="tab-services-link">
+
+
+								<!-- FACE TREATMENTS -->
+								<div class="txt-block mb-40">
+
+									<h3 class="h3-md txt-color-01">✨ Face Treatments</h3>
+
+									<h5 class="h5-md txt-color-01">Facials</h5>
+									<ul class="txt-list txt-color-05">
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Microdermabrasion + Jelly Mask — $79 | 60 min</strong><br>
+											   A skin-renewing facial designed to smooth texture, brighten the complexion, and restore hydration with a cooling jelly mask finish.<br>
+											   <em>Releases:</em> dullness, buildup, surface congestion
+											</p>
+										</li>
+									</ul>
+
+									<h5 class="h5-md txt-color-01">Brows &amp; Lashes</h5>
+									<ul class="txt-list txt-color-05">
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Brow Lamination + Tint — $90</strong><br>
+											   A sculpting treatment that lifts and defines your natural brows for a fuller, polished appearance.<br>
+											   <em>Enhances:</em> shape, symmetry, definition
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Lash Lift + Tint — $90</strong><br>
+											   A natural lash enhancement that lifts, curls, and darkens your lashes for a brighter, more open-eye look.<br>
+											   <em>Enhances:</em> curl, length, definition
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Brow Wax + Shape — $15</strong><br>
+											   Precision shaping to refine your natural brow structure.<br>
+											   <em>Releases:</em> unwanted hair, uneven shape
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Brow Tint — $25</strong><br>
+											   Customized color enhancement to create a fuller, more defined brow appearance.<br>
+											   <em>Enhances:</em> natural brow depth
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Lash Tint — $25</strong><br>
+											   Darkens natural lashes for a subtle, effortless enhancement.<br>
+											   <em>Feel:</em> naturally beautiful, low-maintenance<br>
+											   <em>Enhances:</em> lash visibility and definition
+											</p>
+										</li>
+									</ul>
+
+								</div>
+
+
+								<!-- BODY TREATMENTS -->
+								<div class="txt-block mb-40">
+
+									<h3 class="h3-md txt-color-01">✨ Body Treatments</h3>
+
+									<h5 class="h5-md txt-color-01">Massage &amp; Body Therapies</h5>
+									<ul class="txt-list txt-color-05">
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Deep Tissue Massage — $99 | 60 min</strong><br>
+											   A therapeutic massage focused on releasing deep muscle tension and restoring mobility.<br>
+											   <em>Feel:</em> grounded, relieved, renewed<br>
+											   <em>Releases:</em> knots, tight muscles, stress buildup
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Deep Tissue Massage — $129 | 90 min</strong><br>
+											   An extended therapeutic experience allowing deeper work, relaxation, and full-body restoration.<br>
+											   <em>Feel:</em> deeply relaxed, lighter, restored<br>
+											   <em>Releases:</em> chronic tension, fatigue, muscular stress
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Lymphatic Drainage Massage — $69 | 30 min</strong><br>
+											   A gentle rhythmic technique designed to support natural fluid movement and relaxation.<br>
+											   <em>Feel:</em> light, refreshed, balanced<br>
+											   <em>Releases:</em> heaviness, puffiness, tension
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>AromaTouch Technique (dōTERRA Essential Oils) — $79 | 45 min</strong><br>
+											   A calming essential oil experience designed to relax the body and support emotional balance.<br>
+											   <em>Feel:</em> warm, peaceful, grounded<br>
+											   <em>Releases:</em> stress, emotional tension, overwhelm
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Access Bars — $79 | 60 min</strong><br>
+											   A gentle touch therapy focused on relaxation and mental clarity.<br>
+											   <em>Feel:</em> calm, spacious, deeply relaxed<br>
+											   <em>Releases:</em> mental tension, overthinking, stress
+											</p>
+										</li>
+									</ul>
+
+									<h5 class="h5-md txt-color-01">Body Enhancements (Add-Ons)</h5>
+									<ul class="txt-list txt-color-05">
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Bamboo Therapy</strong><br>
+											   Warm bamboo tools create rhythmic pressure throughout the body.<br>
+											   <em>Feel:</em> deep, flowing, relaxing<br>
+											   <em>Releases:</em> muscle tension, tight fascia
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Hot Stones</strong><br>
+											   Heated stones provide comforting warmth and deep relaxation.<br>
+											   <em>Feel:</em> cozy, heavy, soothing<br>
+											   <em>Releases:</em> stress, muscle tension, fatigue
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Cupping Therapy</strong><br>
+											   A suction technique that lifts tissue and encourages circulation.<br>
+											   <em>Feel:</em> releasing, decompressing, refreshing<br>
+											   <em>Releases:</em> tightness, stagnation, muscular tension
+											</p>
+										</li>
+										<li class="list-item">
+											<i class="fas fa-genderless"></i>
+											<p><strong>Thai Stretching</strong><br>
+											   Assisted stretching techniques that improve flexibility and body awareness.<br>
+											   <em>Feel:</em> open, energized, lengthened<br>
+											   <em>Releases:</em> stiffness, restricted movement
+											</p>
+										</li>
+									</ul>
+
+								</div>
+
+
+								<!-- SMOOTH SKIN SERVICES -->
+								<div class="txt-block mb-40">
+
+									<h3 class="h3-md txt-color-01">✨ Smooth Skin Services (Waxing)</h3>
+
+									<h5 class="h5-md txt-color-01">Facial Waxing</h5>
+									<p class="txt-color-05">Precision waxing to create a smooth, clean finish.</p>
+									<p class="txt-color-05"><em>Available areas:</em></p>
+									<ul class="simple-list txt-color-05">
+										<li>Brows</li>
+										<li>Upper lip</li>
+										<li>Chin</li>
+										<li>Sideburns</li>
+									</ul>
+
+									<h5 class="h5-md txt-color-01">Body Waxing</h5>
+									<p class="txt-color-05">Professional waxing for silky, smooth skin.</p>
+									<p class="txt-color-05"><em>Available areas:</em></p>
+									<ul class="simple-list txt-color-05">
+										<li>Underarms</li>
+										<li>Arms</li>
+										<li>Legs</li>
+										<li>Bikini area (if offered)</li>
+									</ul>
+
+								</div>
+
+										<div class="text-center mt-40 mb-20">
+											<a class="btn btn-md btn-color-02 tra-01-hover" href="#tab-book"
+											   onclick="document.getElementById('tab-book-link').click(); return false;">Book This Session</a>
+										</div>
+
+									</div>	<!-- END TAB: OUR SERVICES -->
+
+
+								</div>	<!-- END tab-content -->
 							</div>
-						</div>	<!-- End row -->
+						</div>	<!-- END BOOKING TABS -->
 
 
 					</div>	   <!-- End container -->		
