@@ -17,6 +17,8 @@
   --am-color-bg-light: #D6C3B0;      /* Brand background - rgb(214, 195, 176) */
   --am-color-ink: #5F5040;           /* Body text - dark coffee, 4.9:1 on the sand bg */
   --am-color-ink-strong: #4A3F31;    /* Headings and strong text, 6.5:1 on the sand bg */
+  --am-color-gold: #A8874A;          /* Dark gold - hero titles */
+  --am-color-gold-deep: #6B5428;     /* Deeper gold - hero supporting text */
   --am-color-white: #FFFFFF;
 }
 
@@ -90,6 +92,34 @@ a:hover {
   text-decoration: underline;
 }
 
+/* 4b. Header nav — clear hover + selected/current state (all items equal) */
+.wsmenu > .wsmenu-list > li > a:hover,
+.wsmenu > .wsmenu-list > li:hover > a {
+  color: var(--am-color-gold-deep) !important;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+.wsmenu > .wsmenu-list > li > a.active,
+.wsmenu > .wsmenu-list > li > a[aria-current="page"] {
+  color: var(--am-color-gold-deep) !important;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+.wsmobileheader .smllogo a {
+  display: inline-block;
+  line-height: 0;
+}
+
+.wsmobileheader .smllogo a:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
 /* 5. Logo Presentation
    The logo artwork has a transparent background,
    so it sits directly on whatever surface it's placed on. */
@@ -125,4 +155,27 @@ img.am-logo {
   list-style-position: inside;
   margin-left: 0;
   text-align: center;
+}
+
+/* 7. Booking / inner page heroes — dark gold instead of template white */
+.page-hero-section .hero-txt,
+.page-hero-section .hero-txt h2,
+.page-hero-section .hero-txt h3,
+.page-hero-section .hero-txt a {
+  color: var(--am-color-gold);
+}
+
+.page-hero-section .hero-txt p {
+  color: var(--am-color-gold-deep);
+}
+
+.page-hero-section #breadcrumb .breadcrumb-item,
+.page-hero-section #breadcrumb .breadcrumb-item a,
+.page-hero-section #breadcrumb .breadcrumb-item.active,
+.page-hero-section #breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--am-color-gold);
+}
+
+.page-hero-section #breadcrumb .breadcrumb-item a:hover {
+  color: var(--am-color-ink-strong);
 }
