@@ -96,3 +96,33 @@ a:hover {
 img.am-logo {
   border-radius: 0;
 }
+
+/* 6. Booking page service menus — center-aligned */
+#tab-services .txt-block {
+  text-align: center;
+}
+
+#tab-services .txt-list {
+  display: inline-block;
+  width: 100%;
+  max-width: 640px;
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
+}
+
+#tab-services .txt-list li {
+  margin-bottom: 1.25rem;
+}
+
+#tab-services .txt-list li p {
+  overflow: visible;
+  margin-bottom: 0;
+}
+
+#tab-services .simple-list {
+  display: inline-block;
+  list-style-position: inside;
+  margin-left: 0;
+  text-align: center;
+}
