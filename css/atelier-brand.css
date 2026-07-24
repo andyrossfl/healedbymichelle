@@ -179,3 +179,24 @@ img.am-logo {
 .page-hero-section #breadcrumb .breadcrumb-item a:hover {
   color: var(--am-color-ink-strong);
 }
+
+/* 8. Homepage botanical hero — full image, cleared below fixed header */
+.am-hero-banner {
+  /* Fixed header sits on top of page flow; push banner clear of it */
+  padding-top: 90px;
+  width: 100%;
+  line-height: 0;
+  background-color: var(--am-color-bg-light);
+}
+
+.am-hero-banner__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 991px) {
+  .am-hero-banner {
+    padding-top: 80px; /* matches .wsmobileheader height */
+  }
+}
