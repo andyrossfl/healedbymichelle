@@ -416,54 +416,6 @@
 
 
 
-
-				<!-- PAGE HERO
-				============================================= -->	
-				<section id="massage-treatment-booking-page" class="bg-fixed wide-100 page-hero-section division">
-					<div class="container">	
-
-
-						<!-- PAGE HERO TEXT -->
-						<div class="row">	
-							<div class="col-md-10 col-xl-8 offset-md-1 offset-xl-2">
-								<div class="hero-txt text-center">
-
-									<!-- Title -->
-									<h2 class="h2-lg">Book Massage</h2>
-
-									<!-- Text -->
-									<p class="p-lg">Choose your massage session, pick a time that works for you, and pay securely 
-									   online with PayPal
-									</p>
-
-								</div>
-							</div>	
-						</div>    <!-- END PAGE HERO TEXT -->
-
-
-						<!-- BREADCRUMB -->
-						<div id="breadcrumb">
-							<div class="row">						
-								<div class="col">
-									<div class="breadcrumb-nav">
-										<nav aria-label="breadcrumb">
-										  	<ol class="breadcrumb">
-										    	<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-										    	<li class="breadcrumb-item active" aria-current="page">Book Massage</li>
-										  	</ol>
-										</nav>
-									</div>
-								</div>
-							</div> 
-						</div>	<!-- END BREADCRUMB -->
-
-
-					</div>	   <!-- End container --> 
-				</section>	<!-- END PAGE HERO -->
-
-
-
-
 				<!-- BOOKING SECTION
 				============================================= -->
 				<section id="massage-treatment-booking-1" class="bg-color-01 wide-60 booking-section division">				
@@ -485,13 +437,7 @@
 									<p class="p-lg txt-color-05">Browse massage &amp; body therapies, then book and pay securely online. 
 									   Your total updates automatically based on the session you choose.
 									</p>
-									<p class="p-md txt-color-05 mt-20">
-										Also available:
-										<a href="face-treatment-booking.html" class="txt-color-02"><strong>Book Facials</strong></a>
-										&nbsp;·&nbsp;
-										<a href="waxing-treatment-booking.html" class="txt-color-02"><strong>Book Wax</strong></a>
-									</p>
-										
+								
 								</div>	
 							</div>
 						</div>
@@ -503,10 +449,10 @@
 
 								<ul class="nav nav-tabs justify-content-center mb-50" role="tablist">
 									<li class="nav-item">
-										<a class="nav-link active" id="tab-book-link" data-toggle="tab" href="#tab-book" role="tab" aria-controls="tab-book" aria-selected="true">Book Massage</a>
+										<a class="nav-link active" id="tab-services-link" data-toggle="tab" href="#tab-services" role="tab" aria-controls="tab-services" aria-selected="true">Massage Menu</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" id="tab-services-link" data-toggle="tab" href="#tab-services" role="tab" aria-controls="tab-services" aria-selected="false">Massage Menu</a>
+										<a class="nav-link" id="tab-book-link" data-toggle="tab" href="#tab-book" role="tab" aria-controls="tab-book" aria-selected="false">Book Massage</a>
 									</li>
 								</ul>
 
@@ -514,7 +460,7 @@
 
 
 									<!-- TAB: BOOK NOW -->
-									<div class="tab-pane fade show active" id="tab-book" role="tabpanel" aria-labelledby="tab-book-link">
+									<div class="tab-pane fade" id="tab-book" role="tabpanel" aria-labelledby="tab-book-link">
 										<div class="row">
 											<div class="col-lg-10 offset-lg-1">
 
@@ -598,7 +544,7 @@
 
 
 									<!-- TAB: OUR SERVICES -->
-									<div class="tab-pane fade" id="tab-services" role="tabpanel" aria-labelledby="tab-services-link">
+									<div class="tab-pane fade show active" id="tab-services" role="tabpanel" aria-labelledby="tab-services-link">
 
 
 
@@ -684,7 +630,7 @@
 
 										<div class="text-center mt-40 mb-20">
 											<a class="btn btn-md btn-color-02 tra-01-hover" href="#tab-book"
-											   onclick="document.getElementById('tab-book-link').click(); return false;">Book This Massage</a>
+											   onclick="document.getElementById('tab-book-link').click(); return false;">Book Massage</a>
 										</div>
 
 									</div>	<!-- END TAB: OUR SERVICES -->
@@ -693,7 +639,12 @@
 								</div>	<!-- END tab-content -->
 							</div>
 						</div>	<!-- END BOOKING TABS -->
-
+						<p class="p-md txt-color-05 mt-20">
+							Also available:
+							<a href="face-treatment-booking.html" class="txt-color-02"><strong>Book Facials</strong></a>
+							&nbsp;·&nbsp;
+							<a href="waxing-treatment-booking.html" class="txt-color-02"><strong>Book Wax</strong></a>
+						</p>
 
 					</div>	   <!-- End container -->		
 				</section>	<!-- END BOOKING SECTION -->
@@ -729,11 +680,11 @@
 								<div class="footer-contacts mb-40">
 								
 									<!-- Title -->
-									<h6 class="h6-lg txt-color-01">Let's Talk</h6>
+									<h6 class="h6-lg txt-color-01">Contact</h6>
 
-									<!-- Address -->
+									<!-- Address 
 									<p class="txt-color-05">121 King Street, Melbourne,</p> 
-									<p class="txt-color-05">Victoria 3000 Australia</p>
+									<p class="txt-color-05">Victoria 3000 Australia</p> -->
 
 									<!-- Footer Contacts -->
 									<div class="txt-color-05 mt-15">
@@ -741,10 +692,7 @@
 										<!-- Email -->
 										<p class="foo-email">E: <a href="mailto:yourdomain@mail.com">hello@yourdomain.com</a></p>
 
-										<!-- Phone -->
-										<p>Phone: +12 9 8765 4321</p>
-										<p>Skype : <a href="tel:123456789">support.spamagic</a></p>
-
+				
 									</div>
 
 								</div>
@@ -760,13 +708,9 @@
 
 									<!-- Footer Links -->
 									<ul class="txt-color-05 clearfix">
-										<li><p><a href="about.html">About Us</a></p></li>	
-										<li><p><a href="services.html">Our Services</a></p></li>	
-										<li><p><a href="faqs.html">Help & FAQs</a></p></li>
 										<li><p><a href="face-treatment-booking.html">Book Facials</a></p></li>
 										<li><p><a href="massage-treatment-booking.html">Massage Booking</a></p></li>
-										<li><p><a href="waxing-treatment-booking.html">Waxing Booking</a></p></li>
-										<li><p><a href="gift-cards.html">Gift Cards</a></p></li>	
+										<li><p><a href="waxing-treatment-booking.html">Waxing Booking</a></p></li>	
 									</ul>
 
 								</div>
@@ -814,9 +758,8 @@
 								<div class="col-lg-6">
 									<ul class="bottom-footer-list text-right clearfix">
 										<li><p class="first-list-link"><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></p></li>	
-										<li><p><a href="#"><i class="fab fa-twitter"></i> Twitter</a></p></li>
 										<li><p><a href="#"><i class="fab fa-instagram"></i> Instagram</a></p></li>
-										<li><p class="last-li"><a href="#"><i class="fab fa-yelp"></i> Yelp</a></p></li>
+					
 									</ul>
 								</div>
 
