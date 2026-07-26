@@ -15,6 +15,7 @@
   --am-color-sand: #D9CDBC;          /* Soft accent backgrounds (was "lipstick") */
   --am-color-cream: #F5EFE6;         /* Light surfaces (was "cream") */
   --am-color-bg-light: #D6C3B0;      /* Brand background - rgb(214, 195, 176) */
+  --am-color-nav: #544032;           /* Top navigation bar */
   --am-color-ink: #5F5040;           /* Body text - dark coffee, 4.9:1 on the sand bg */
   --am-color-ink-strong: #4A3F31;    /* Headings and strong text, 6.5:1 on the sand bg */
   --am-color-gold: #A8874A;          /* Dark gold - hero titles */
@@ -69,10 +70,97 @@ h3 { font-size: 1.75rem; }
   text-align: center;
 }
 
-/* In the footer the logo is left-aligned, so align the slogan with it */
+/* In the footer, slogan is left-aligned (logo removed) */
 .footer-info .slogan-text {
   text-align: left;
-  margin-top: 0.75em;
+  margin-top: 0;
+  color: var(--am-color-cream);
+}
+
+/* Footer matches top navigation */
+#footer-4.footer,
+#footer-1.footer {
+  background-color: var(--am-color-nav) !important;
+}
+
+#footer-4 .txt-color-01,
+#footer-1 .txt-color-01,
+#footer-4 h6,
+#footer-1 h6 {
+  color: var(--am-color-cream) !important;
+}
+
+#footer-4 .txt-color-05,
+#footer-1 .txt-color-05,
+#footer-4 .txt-color-05 a,
+#footer-1 .txt-color-05 a,
+#footer-4 .footer-links a,
+#footer-1 .footer-links a,
+#footer-4 .bottom-footer,
+#footer-1 .bottom-footer,
+#footer-4 .footer-copyright p,
+#footer-1 .footer-copyright p {
+  color: rgba(245, 239, 230, 0.78) !important;
+}
+
+#footer-4 .footer-links a:hover,
+#footer-1 .footer-links a:hover,
+#footer-4 .foo-email a:hover,
+#footer-1 .foo-email a:hover,
+#footer-4 .bottom-footer-list a:hover,
+#footer-1 .bottom-footer-list a:hover {
+  color: var(--am-color-gold) !important;
+}
+
+#footer-4 .footer-img h6 a,
+#footer-4 .footer-img p a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#footer-4 .footer-img h6 a:hover,
+#footer-4 .footer-img p a:hover {
+  color: var(--am-color-gold) !important;
+}
+
+/* Instagram footer CTA (until live widget embed is added) */
+.am-ig-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid rgba(245, 239, 230, 0.22);
+  border-radius: 8px;
+  color: var(--am-color-cream) !important;
+  text-decoration: none !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.am-ig-cta:hover {
+  border-color: var(--am-color-gold);
+  background-color: rgba(245, 239, 230, 0.06);
+  color: var(--am-color-cream) !important;
+}
+
+.am-ig-cta__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--am-color-gold);
+}
+
+.am-ig-cta__handle {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.am-ig-cta__label {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 /* Main paragraphs (theme's classed paragraphs, e.g. p.p-md, keep their sizes) */
@@ -92,10 +180,27 @@ a:hover {
   text-decoration: underline;
 }
 
-/* 4b. Header nav — clear hover + selected/current state (all items equal) */
+/* 4b. Header nav bar + clear hover/selected state */
+.white-menu .wsmainfull,
+.white-menu .wsmainfull.scroll,
+.tra-menu .wsmainfull.scroll {
+  background-color: var(--am-color-nav) !important;
+}
+
+.white-menu .wsmobileheader,
+.tra-menu .wsmobileheader {
+  background-color: var(--am-color-nav) !important;
+}
+
+/* Light links so they read on the dark nav */
+.navbar-dark .wsmenu > .wsmenu-list > li > a,
+.white-menu .wsmenu > .wsmenu-list > li > a {
+  color: var(--am-color-cream) !important;
+}
+
 .wsmenu > .wsmenu-list > li > a:hover,
 .wsmenu > .wsmenu-list > li:hover > a {
-  color: var(--am-color-gold-deep) !important;
+  color: var(--am-color-gold) !important;
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 2px;
@@ -103,11 +208,43 @@ a:hover {
 
 .wsmenu > .wsmenu-list > li > a.active,
 .wsmenu > .wsmenu-list > li > a[aria-current="page"] {
-  color: var(--am-color-gold-deep) !important;
+  color: var(--am-color-gold) !important;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 2px;
+}
+
+/* Mobile hamburger on dark nav */
+.white-menu .wsanimated-arrow span,
+.white-menu .wsanimated-arrow span:before,
+.white-menu .wsanimated-arrow span:after,
+.tra-menu .wsanimated-arrow span,
+.tra-menu .wsanimated-arrow span:before,
+.tra-menu .wsanimated-arrow span:after {
+  background: var(--am-color-cream) !important;
+}
+
+/* Mobile slide-out drawer — match top nav */
+@media (max-width: 991px) {
+  .wsmenu > .wsmenu-list,
+  .wsmenu > .wsmenu-list > li > ul.sub-menu {
+    background: var(--am-color-nav) !important;
+    background-color: var(--am-color-nav) !important;
+  }
+
+  .wsmenu > .wsmenu-list > li > a {
+    color: var(--am-color-cream) !important;
+    border-bottom-color: rgba(245, 239, 230, 0.15) !important;
+  }
+
+  .wsmenu > .wsmenu-list > li:hover > a,
+  .wsmenu > .wsmenu-list > li > a:hover,
+  .wsmenu > .wsmenu-list > li > a.active,
+  .wsmenu > .wsmenu-list > li > a[aria-current="page"] {
+    color: var(--am-color-gold) !important;
+    background-color: rgba(245, 239, 230, 0.08) !important;
+  }
 }
 
 .wsmobileheader .smllogo a {
@@ -121,10 +258,28 @@ a:hover {
 }
 
 /* 5. Logo Presentation
-   The logo artwork has a transparent background,
-   so it sits directly on whatever surface it's placed on. */
+   Wide wordmark (~4.1:1). Transparent PNG sits on taupe surfaces.
+   CSS max sizes keep it sharp on retina without overflowing the nav. */
 img.am-logo {
   border-radius: 0;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.desktoplogo img.am-logo {
+  max-width: 180px;
+  max-height: 44px;
+}
+
+.wsmobileheader .smllogo img.am-logo {
+  max-width: min(170px, calc(100vw - 96px));
+  max-height: 40px;
+}
+
+.footer-info img.am-logo {
+  max-width: 200px;
+  max-height: 50px;
 }
 
 /* 6. Booking page service menus — center-aligned */
