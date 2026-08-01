@@ -1,0 +1,4 @@
+# Temporary: block all crawlers while testing.
+# Remove or update before public launch.
+User-agent: *
+Disallow: /
