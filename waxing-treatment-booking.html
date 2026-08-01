@@ -473,6 +473,11 @@
 										<input type="text" id="client-name" name="client-name" class="form-control"
 										       placeholder="Your full name" autocomplete="name" required>
 
+										<!-- Email -->
+										<label class="form-label txt-color-01" for="client-email">Email <span aria-hidden="true">*</span></label>
+										<input type="email" id="client-email" name="email" class="form-control"
+										       placeholder="you@example.com" autocomplete="email" required>
+
 										<!-- Type of Session -->
 										<label class="form-label txt-color-01" for="session-type">Waxing Service <span aria-hidden="true">*</span></label>
 										<select id="session-type" name="session-type" class="form-control" required>
@@ -520,11 +525,12 @@
 									<div class="success-icon"><i class="fas fa-check-circle"></i></div>
 
 									<h3 class="h3-sm txt-color-01">Waxing Booking Confirmed!</h3>
-									<p class="p-lg txt-color-05">Thank you &mdash; your payment was received and your session is booked.</p>
+									<p class="p-lg txt-color-05">Thank you &mdash; your payment was received and your session is booked. A confirmation email is on its way.</p>
 
 									<!-- Booking summary (filled in by JS) -->
 									<div class="booking-summary txt-color-05">
 										<p><span>Name:</span> <span id="summary-name"></span></p>
+										<p><span>Email:</span> <span id="summary-email"></span></p>
 										<p><span>Session:</span> <span id="summary-session"></span></p>
 										<p><span>Date &amp; Time:</span> <span id="summary-datetime"></span></p>
 										<p><span>Amount Paid:</span> <span id="summary-amount"></span></p>
@@ -787,6 +793,7 @@
 			/* --- DOM references --- */
 			var form        = document.getElementById("appointment-form");
 			var nameInput   = document.getElementById("client-name");
+			var emailInput  = document.getElementById("client-email");
 			var typeSelect  = document.getElementById("session-type");
 			var dtInput     = document.getElementById("appointment-datetime");
 			var priceEl     = document.getElementById("total-price");
@@ -794,7 +801,7 @@
 			var bookingCard = document.getElementById("booking-card");
 			var successUI   = document.getElementById("booking-success");
 
-			if (!form || !dtInput || !priceEl || !guard) { return; }
+			if (!form || !nameInput || !emailInput || !dtInput || !priceEl || !guard) { return; }
 
 			/* Prevent booking in the past: set the datetime-local minimum to now */
 			function pad(n) { return String(n).padStart(2, "0"); }
@@ -837,6 +844,19 @@
 			}
 
 			function sendBookingEmail(details) {
+				var autoresponse =
+					"Hi " + details.client_name + ",\n\n" +
+					"Thank you for booking with Atelier Michelle. Your payment was received and your session is confirmed.\n\n" +
+					"Category: " + BOOKING_CATEGORY + "\n" +
+					"Service: " + details.session + "\n" +
+					"Length: " + details.length + "\n" +
+					"Date & Time: " + details.datetime + "\n" +
+					"Amount Paid: " + details.amount + "\n" +
+					"PayPal Transaction: " + details.paypal_txn + "\n\n" +
+					"We look forward to seeing you. If you need to reschedule, reply to this email or contact us at " +
+					BOOKING_NOTIFY_EMAIL + ".\n\n" +
+					"With care,\nAtelier Michelle";
+
 				return fetch("https://formsubmit.co/ajax/" + encodeURIComponent(BOOKING_NOTIFY_EMAIL), {
 					method: "POST",
 					headers: {
@@ -847,6 +867,9 @@
 						_subject: "New " + BOOKING_CATEGORY + " booking — " + details.session,
 						_template: "table",
 						_captcha: "false",
+						_replyto: details.email,
+						_autoresponse: autoresponse,
+						email: details.email,
 						category: BOOKING_CATEGORY,
 						client_name: details.client_name,
 						session: details.session,
@@ -965,6 +988,7 @@
 							});
 
 							document.getElementById("summary-name").textContent     = nameInput.value;
+							document.getElementById("summary-email").textContent    = emailInput.value;
 							document.getElementById("summary-session").textContent  = session.label + " (" + length + " min)";
 							document.getElementById("summary-datetime").textContent = whenLabel;
 							document.getElementById("summary-amount").textContent   = "$" + total.toFixed(2) + " USD";
@@ -979,6 +1003,7 @@
 
 							sendBookingEmail({
 								client_name: nameInput.value,
+								email:       emailInput.value,
 								session:     session.label,
 								length:      length + " minutes",
 								datetime:    whenLabel,
