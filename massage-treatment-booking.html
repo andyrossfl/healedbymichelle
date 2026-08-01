@@ -796,20 +796,6 @@
 		<script src="https://www.paypal.com/sdk/js?client-id=Af6bu4fIKQX3y4qJ9bHSw2PZ0RWbqe4EEX1Akh4i-F_2gI2s-KsmR-l6NKeYy9jGK1jYi_kUQJ3s7Nqn&currency=USD&intent=capture" async></script>
 
 
-		<!-- EMAILJS SDK (async)
-		=============================================
-		Sends a booking notification email to the business owner after payment.
-		Setup (free tier: 200 emails/month):
-		  1. Create an account at https://www.emailjs.com/
-		  2. Add an Email Service (e.g. connect your Gmail) -> copy the Service ID
-		  3. Create an Email Template using these variables:
-		     {{client_name}} {{session}} {{length}} {{datetime}} {{amount}} {{paypal_txn}}
-		     -> copy the Template ID
-		  4. Account > General -> copy your Public Key
-		  5. Paste all three values into EMAILJS_CONFIG in the booking script below -->
-		<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" async></script>
-
-
 		<!-- BOOKING FORM LOGIC
 		============================================= -->
 		<script>
@@ -829,30 +815,10 @@
 
 			function initBooking() {
 
-			/* ==============================================================
-			   EMAILJS CONFIG
-			   --------------------------------------------------------------
-			   Fill in your three EmailJS values (see the EmailJS SDK comment
-			   above). Until all three are set, email sending is skipped
-			   silently and the rest of the booking flow works normally.
-			   ============================================================== */
-			var EMAILJS_CONFIG = {
-				publicKey:  "YOUR_PUBLIC_KEY",
-				serviceId:  "YOUR_SERVICE_ID",
-				templateId: "YOUR_TEMPLATE_ID"
-			};
-
-			var emailjsReady = window.emailjs &&
-				EMAILJS_CONFIG.publicKey  !== "YOUR_PUBLIC_KEY" &&
-				EMAILJS_CONFIG.serviceId  !== "YOUR_SERVICE_ID" &&
-				EMAILJS_CONFIG.templateId !== "YOUR_TEMPLATE_ID";
-
-			if (emailjsReady) {
-				emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
-			}
-
-			/* TEMP test charge — set to null to charge real menu prices */
-			var PAYPAL_TEST_AMOUNT = 0.01;
+			/* Booking notifications via FormSubmit (no API keys required).
+			   First live booking sends an activation email to this inbox — click to confirm. */
+			var BOOKING_NOTIFY_EMAIL = "ateliermichelle.fl@gmail.com";
+			var BOOKING_CATEGORY = "Massage Treatments";
 
 			var PRICING = {
 				sessions: {
@@ -917,23 +883,35 @@
 				return Math.round(PRICING.sessions[type].basePrice * 100) / 100;
 			}
 
-			function getChargeAmount() {
-				var total = calculateTotal();
-				if (total === null) { return null; }
-				return (PAYPAL_TEST_AMOUNT !== null) ? PAYPAL_TEST_AMOUNT : total;
-			}
-
 			function updatePriceDisplay() {
 				syncLengthFromSession();
 				var total = calculateTotal();
-				var charge = getChargeAmount();
-				if (total === null) {
-					priceEl.textContent = "\u2014";
-				} else if (PAYPAL_TEST_AMOUNT !== null) {
-					priceEl.textContent = "$" + charge.toFixed(2) + " (test)";
-				} else {
-					priceEl.textContent = "$" + total.toFixed(2);
-				}
+				priceEl.textContent = (total === null) ? "\u2014" : "$" + total.toFixed(2);
+			}
+
+			function sendBookingEmail(details) {
+				return fetch("https://formsubmit.co/ajax/" + encodeURIComponent(BOOKING_NOTIFY_EMAIL), {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Accept": "application/json"
+					},
+					body: JSON.stringify({
+						_subject: "New " + BOOKING_CATEGORY + " booking — " + details.session,
+						_template: "table",
+						_captcha: "false",
+						category: BOOKING_CATEGORY,
+						client_name: details.client_name,
+						session: details.session,
+						length: details.length,
+						datetime: details.datetime,
+						amount: details.amount,
+						paypal_txn: details.paypal_txn
+					})
+				}).then(function (res) {
+					if (!res.ok) { throw new Error("FormSubmit HTTP " + res.status); }
+					return res.json();
+				});
 			}
 
 			form.addEventListener("change", updatePriceDisplay);
@@ -1013,7 +991,7 @@
 					},
 
 					createOrder: function (data, actions) {
-						var total   = getChargeAmount();
+						var total   = calculateTotal();
 						var session = PRICING.sessions[typeSelect.value];
 						var length  = getSelectedLength();
 
@@ -1032,15 +1010,16 @@
 						return actions.order.capture().then(function (details) {
 							var session = PRICING.sessions[typeSelect.value];
 							var length  = parseInt(getSelectedLength(), 10);
-							var total   = getChargeAmount();
+							var total   = calculateTotal();
 							var when    = new Date(dtInput.value);
-
-							document.getElementById("summary-name").textContent     = nameInput.value;
-							document.getElementById("summary-session").textContent  = session.label + " (" + length + " min)";
-							document.getElementById("summary-datetime").textContent = when.toLocaleString([], {
+							var whenLabel = when.toLocaleString([], {
 								weekday: "long", year: "numeric", month: "long", day: "numeric",
 								hour: "numeric", minute: "2-digit"
 							});
+
+							document.getElementById("summary-name").textContent     = nameInput.value;
+							document.getElementById("summary-session").textContent  = session.label + " (" + length + " min)";
+							document.getElementById("summary-datetime").textContent = whenLabel;
 							document.getElementById("summary-amount").textContent   = "$" + total.toFixed(2) + " USD";
 							document.getElementById("summary-txn").textContent      = details.id;
 
@@ -1051,23 +1030,16 @@
 							successUI.style.display   = "block";
 							successUI.scrollIntoView({ behavior: "smooth", block: "center" });
 
-							if (emailjsReady) {
-								emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
-									client_name: nameInput.value,
-									session:     session.label,
-									length:      length + " minutes",
-									datetime:    when.toLocaleString([], {
-										weekday: "long", year: "numeric", month: "long", day: "numeric",
-										hour: "numeric", minute: "2-digit"
-									}),
-									amount:      "$" + total.toFixed(2) + " USD",
-									paypal_txn:  details.id
-								}).catch(function (err) {
-									console.error("EmailJS notification failed:", err);
-								});
-							} else {
-								console.warn("EmailJS not configured -- booking email skipped. Set EMAILJS_CONFIG values.");
-							}
+							sendBookingEmail({
+								client_name: nameInput.value,
+								session:     session.label,
+								length:      length + " minutes",
+								datetime:    whenLabel,
+								amount:      "$" + total.toFixed(2) + " USD",
+								paypal_txn:  details.id
+							}).catch(function (err) {
+								console.error("Booking notification email failed:", err);
+							});
 						});
 					},
 
