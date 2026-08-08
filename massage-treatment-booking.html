@@ -190,6 +190,34 @@
 				font-weight: 700;
 				margin: 0;
 			}
+			.policy-agree {
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+				margin: 0 0 28px;
+			}
+			.policy-agree input[type="checkbox"] {
+				flex-shrink: 0;
+				width: 18px;
+				height: 18px;
+				margin-top: 3px;
+				accent-color: #9e8b75;
+				cursor: pointer;
+			}
+			.policy-agree label {
+				margin: 0;
+				font-size: .95rem;
+				line-height: 1.45;
+				color: #5c5346;
+				cursor: pointer;
+			}
+			.policy-agree a {
+				color: #9e8b75;
+				text-decoration: underline;
+			}
+			.policy-agree a:hover {
+				color: #7a6b58;
+			}
 			#paypal-button-container {
 				max-width: 420px;
 				margin: 0 auto;
@@ -507,6 +535,12 @@
 											<p class="price-value txt-color-01" id="total-price">&mdash;</p>
 										</div>
 
+										<!-- Policy agreement (required before PayPal) -->
+										<div class="policy-agree">
+											<input type="checkbox" id="policy-agree" name="policy-agree" required>
+											<label for="policy-agree">I agree to the <a href="terms.html" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Terms &amp; Conditions</a>, <a href="cancellation.html" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Cancellation Policy</a>, and <a href="privacy.html" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Privacy Policy</a>.</label>
+										</div>
+
 									</form>
 
 									<!-- PayPal Smart Buttons -->
@@ -700,6 +734,12 @@
 								
 									<!-- Title -->
 									<h6 class="h6-lg txt-color-01">Quick Links</h6>
+
+									<ul class="txt-color-05 clearfix">
+										<li><p><a href="terms.html">Terms &amp; Conditions</a></p></li>
+										<li><p><a href="cancellation.html">Cancellation Policy</a></p></li>
+										<li><p><a href="privacy.html">Privacy Policy</a></p></li>
+									</ul>
 
 									<!-- Footer booking links hidden until license is ready
 									<ul class="txt-color-05 clearfix">
