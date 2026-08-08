@@ -793,7 +793,7 @@
 		=============================================
 		Client ID from https://developer.paypal.com/dashboard/applications
 		Never put the Client Secret in frontend code. -->
-		<script src="https://www.paypal.com/sdk/js?client-id=Af6bu4fIKQX3y4qJ9bHSw2PZ0RWbqe4EEX1Akh4i-F_2gI2s-KsmR-l6NKeYy9jGK1jYi_kUQJ3s7Nqn&currency=USD&intent=capture" async></script>
+		<script src="https://www.paypal.com/sdk/js?client-id=BAALfWs3-GmVHsjRR3hOSBJnAX2mzQEZyaKtBmqETFDbfGviivnBRw494MtHo7vv3NkxX2-XpAXmAkCWGE&currency=USD&intent=capture" async></script>
 
 
 		<!-- BOOKING FORM LOGIC
@@ -819,6 +819,9 @@
 			   First live booking sends an activation email to this inbox — click to confirm. */
 			var BOOKING_NOTIFY_EMAIL = "ateliermichelle.fl@gmail.com";
 			var BOOKING_CATEGORY = "Face Treatments";
+
+			/* TEMP test charge — set to null to charge real menu prices */
+			var PAYPAL_TEST_AMOUNT = null;
 
 			var PRICING = {
 				sessions: {
@@ -884,10 +887,23 @@
 				return Math.round(PRICING.sessions[type].basePrice * 100) / 100;
 			}
 
+			function getChargeAmount() {
+				var total = calculateTotal();
+				if (total === null) { return null; }
+				return (PAYPAL_TEST_AMOUNT !== null) ? PAYPAL_TEST_AMOUNT : total;
+			}
+
 			function updatePriceDisplay() {
 				syncLengthFromSession();
 				var total = calculateTotal();
-				priceEl.textContent = (total === null) ? "\u2014" : "$" + total.toFixed(2);
+				var charge = getChargeAmount();
+				if (total === null) {
+					priceEl.textContent = "\u2014";
+				} else if (PAYPAL_TEST_AMOUNT !== null) {
+					priceEl.textContent = "$" + charge.toFixed(2) + " (test)";
+				} else {
+					priceEl.textContent = "$" + total.toFixed(2);
+				}
 			}
 
 			function sendBookingEmail(details) {
@@ -1008,7 +1024,7 @@
 					},
 
 					createOrder: function (data, actions) {
-						var total   = calculateTotal();
+						var total   = getChargeAmount();
 						var session = PRICING.sessions[typeSelect.value];
 						var length  = getSelectedLength();
 
@@ -1027,7 +1043,7 @@
 						return actions.order.capture().then(function (details) {
 							var session = PRICING.sessions[typeSelect.value];
 							var length  = parseInt(getSelectedLength(), 10);
-							var total   = calculateTotal();
+							var total   = getChargeAmount();
 							var when    = new Date(dtInput.value);
 							var whenLabel = when.toLocaleString([], {
 								weekday: "long", year: "numeric", month: "long", day: "numeric",
